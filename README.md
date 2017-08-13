@@ -1,6 +1,6 @@
 # Es hora de decir bye-bye. Using python for sociolinguistic analysis.
 
-This repository contains a talk on the collection and explanation of the English occurances in a corpus of articles from the US Spanish language journal "Siempre mujer".
+This repository contains a talk on the collection and explanation of the English occurrences in a corpus of articles from the US Spanish language journal "Siempre mujer".
 We will have a look at the python modules for scraping and natural language processing used for the project (pattern, request and nltk),
 try to evaluate their suitability for the task and discuss alternative approaches.
 As an added bonus we'll also briefly touch on some theories from the sociolinguistics in an attempt to understand why English was used in the particular cases.
