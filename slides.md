@@ -64,10 +64,30 @@ Laut Sarah Thomason ist Code-Switching vermutlich der häufigste Weg, auf dem En
 lehnungen Teil einer Sprache werden (vgl. Thomason, 2003).
 Schwierig scharf von einander abzugrenzen; Unterschied: quantitativer Natur
 
-Warum passieren beide? "powerful socioeconomic and cultural forces", die Borrowings in Kontaktsi-
+Warum passieren beide?: "powerful socioeconomic and cultural forces", die Borrowings in Kontaktsi-
 tuationen zwischen zwei Kulturen fördern(vgl. Zentella, 1990).
+* Begriffe, die kulturelle Phänomene beschreiben, die in der Muttersprache und der dazugehörigen Kultur in der Form nicht existieren. Beispiele hierfür wären [kei/keike/keiki] “cake”, [yins/blu yines] “(blue)jeans” (vgl. Zentella, 1990) oder “la boila” (boiler).
+* Ähnlichkeit in der phonologischen oder morphologischen Struktur eines Wortes. Deshalb wird das spanische Wort “libreria” (Buchladen) auf einmal im Spanischen auch für Bibliothek (auf Englisch “library”, auf Spanisch “biblioteca”) benutzt.
+* einer der universellen Prinzipien des Sprachwandels – Sparsamkeit: das entlehnteWort ist kürzer. Deshalb wird zum Beispiel “florero” durch “vase” ersetzt (vgl. Zentella, 1990).
+* Prestige: die Sprache oder Varietät, aus der entlehnt wird, wird als prestigeträchtiger angesehen.
+* im konkreten Fall “Entlehnungen zwischen dem Spanischen und dem Englischen in den USA” können Anglizismen als neutralisierende Begriffe zwischen den ver-
+schiedenen Varietäten des Spanischen dienen.
+
+* language shift : Mit Language Shift bezeichnen wir den Prozess, bei dem eine Sprache, die als Kommunikations- und Sozialisationsmittel für eine Gemeinschaft gedient hat, durch eine Andere ersetzt wird
 
 * socio indexicality
+ ** first-order index
+ ** secondary: linguistic traits become secondary indices -> speakers choose consciously which language traits they use in order to project particular ideology, supposed character traits, being part of a specific group, ...; secondary socio indexicality is an ideological interpretation of language traits
+ ** higher order indexicality is possible: when traits of nth order get ideologically re-interpreted
+
+* indexicality? field : “a constellation of meanings that are ideologically linked” (vgl. Eckert, 2008).
+  ** fluid
+  ** Wenn eine Variable/ein Merkmal benutzt wird, wird dann nicht eine statische Bedeutung aktiviert, sondern, je nach Kontext und Ideologie der Gesprächspartnerin, eine von mehreren möglichen Bedeutungen hervorgerufen(?),
+
+* style: Der Begriff “Stil” ist eng an den Begriff Sozioindexikalität gekoppelt
+Die Entscheidung für oder gegen bestimmte linguistische Features verläuft in der Regel weniger bewusst als die Entscheidung für oder gegen Elemente anderer
+stylistischen Systemen (z.B Kleidung).
+Wenn ein Merkmal als solches wahrgenommen und mit Bedeutung ausgestattet wird, können sich Sprecherinnen entscheiden, dieses in die eigene stilistische Representation einzubauen oder eben nicht.
 
 ---
 
@@ -89,6 +109,9 @@ Kategorien:
 
 * this presentation: [https://github.com/lusy/pydataBerByeBye](https://github.com/lusy/pydataBerByeBye)
 * code: [https://github.com/lusy/hora-de-decir-bye-bye](https://github.com/lusy/hora-de-decir-bye-bye)
+* Eckert, Penelope: Variation and the indexical field. In: Journal of Sociolinguistics 12 (2008), Nr. 4, S. 453–476
+* Thomason, Sarah G.: Contact as a Source of Language Change. In: Joseph, Brian D. (Hrsg.) ; Janda, Richard D. (Hrsg.): The Handbook of Historical Linguistics. Oxford, UK : Blackwell Publishing Ltd, 2003, S. 687–712
+* Zentella, Ana C.: Lexical Leveling in Four New York City Spanish Dialects: Linguistic and Social Factors. In: Hispania 73 (1990), Nr. 4
 
 ---
 
