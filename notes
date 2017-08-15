@@ -12,7 +12,11 @@ As an added bonus we will also briefly touch on some theories from the socioling
 ---
 
 * What will people learn?
-* Activation questions
+* Activation questions (choose)
+  * Who has scraped a webpage at least once? (so you know what a messy business it is; and have at least a vague notion of the myriad of tools out there which facilitate this)
+  * something making and overview of knowledge background (beginner-intermediate-advanced)
+  * Who speaks Spanish or at least understands some when reading?
+  * Who has used pattern/request/BeautifulSoup/nltk?
 
 ---
 
@@ -23,6 +27,28 @@ Example: http://siempremujer.com/estilo/8-senales-amiga-toxica-en-redes-sociales
 8 señales de una amiga tóxica en las redes sociales
 
 > Maquinita de criticar: Si tu amiga se la pasa poniendo memes que critican tu postura religiosa, se burlan abiértamente de los homosexuales y apoyan frases que parecen de la época de la esclavitud que te incomodan. *Es hora de decir bye-bye.*
+
+---
+
+# What is this talk about
+
+* scraping webpages
+* lingusitics
+  * processing linguistic data
+  * interpreting linguistic data
+
+---
+
+# Overview
+
+* quick and dirty
+* write cleaned data (plain text) to files
+* procedural, one task at time (Unix approach^^)
+* python 2.7 (2013) <-- so technically semi exciting, a lot of stuff should/can be done differently/better today
+  * pattern <--  not ported for python3
+  * scrapy for more exhaustive scraping
+  * better labeling <-- other language recognition method? more exhaustive word lists? generate forms?
+  * automatic classification of results?
 
 ---
 
@@ -270,3 +296,4 @@ This presentation is licensed under the [Creative Commons BY-SA license](https:/
 ![by](Cc-by_new_white.svg)
 ![sa](Cc-sa_white.svg)
 
+Shoot me an email:
