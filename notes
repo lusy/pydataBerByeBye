@@ -16,6 +16,16 @@ As an added bonus we will also briefly touch on some theories from the socioling
 
 ---
 
+# Motivation
+
+* problem: hausarbeit; scrape articles; identify English occurrances; analyse them
+Example: http://siempremujer.com/estilo/8-senales-amiga-toxica-en-redes-sociales/72941/
+8 señales de una amiga tóxica en las redes sociales
+
+> Maquinita de criticar: Si tu amiga se la pasa poniendo memes que critican tu postura religiosa, se burlan abiértamente de los homosexuales y apoyan frases que parecen de la época de la esclavitud que te incomodan. *Es hora de decir bye-bye.*
+
+---
+
 # Structure
 
 * problem: hausarbeit; scrape articles; identify English occurrances; analyse them
@@ -23,6 +33,7 @@ As an added bonus we will also briefly touch on some theories from the socioling
   * scrape articles (pattern, request) -> possible problems (irregular html structure of the magazine)
     ** 3 years old work; pattern seemed a better choice at the time, today it is still not ported for python3
     ** non-exhaustive scrape because of irregular html; scrapy? it would have been an option back then as well, I just did not do my research properly
+  * also note which cathegory each article was in on the website (fashion, lifestyle, love, beauty, fitness, etc..) --> not really done any analysis on that
   * download and clean libre office spelling dictionaries
     ** make intersection and differences (Spanish common and Spanish regional); not very prolific
   * clean articles from html markup -> result we use for next step: plain text
@@ -32,25 +43,75 @@ As an added bonus we will also briefly touch on some theories from the socioling
   * identify English occurrences in the Spanish texts (download and apply the libre office Spanish and English language dicts); label each token according to appearance in dictionaries (EN, ES, ES_regional --> multiple labels possible; PUNCT; UNK)
     * annotate punctuation (hand compiled list)
     * convert tokens to lower case before checking
-    * problems: some words exist in both languages (e.g.: "me", "no", "hay", etc.)
+    * problems: some words exist in both languages (e.g.: "me", "no", "hay", "sin", "soy", "sea" etc.)
     * dictionaries non-exhaustive: seldom words are missing
     * not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, .. for the verbs) --> it is possible to generate flexions forms and add them to dicts, but it makes the process a whole lot more complicated
   * consider all words marked as EN only and their surrounding context
     * use NLTK Texts.ConcordanceIndex() for generating context
      --> BEISPIELE
+  * manually sort them into cathegories
+    * which automatic approaches would have been possible? clustering? annotate some and make supervised learning?
 * brief overview over resulting cathegories
 * discuss alternative approaches on each step (or on the whole)
   * e.g. for scraping you can also use BeautifulSoup
 
 ---
 
-# Motivation
+# Concordances
 
-* problem: hausarbeit; scrape articles; identify English occurrances; analyse them
-Example: http://siempremujer.com/estilo/8-senales-amiga-toxica-en-redes-sociales/72941/
-8 señales de una amiga tóxica en las redes sociales
+Article # 11679
+[Jet, ['EN']]
+Displaying 6 of 6 matches:
+                                      Jet Bag : la bolsa viajera Yo , que viajo
+ueno , bendita sea esta bolsa llamada Jet Bag , que genuinamente les tengo que 
+n líquidos dentro de mis maletas . El Jet Bag es la manera perfecta para el tra
+e limitar su uso a vino ! La Bolsa de Jet es también una gran manera para el tr
+lla frágil- y como si fuera poco , el Jet Bag tiene un cierre hermético reusabl
+ión o para adquirir tu bolsa , visita Jet Bag .
 
-> Maquinita de criticar: Si tu amiga se la pasa poniendo memes que critican tu postura religiosa, se burlan abiértamente de los homosexuales y apoyan frases que parecen de la época de la esclavitud que te incomodan. *Es hora de decir bye-bye.*
+[Bag, ['EN']]
+Displaying 5 of 5 matches:
+                                      Bag : la bolsa viajera Yo , que viajo muc
+ , bendita sea esta bolsa llamada Jet Bag , que genuinamente les tengo que aseg
+quidos dentro de mis maletas . El Jet Bag es la manera perfecta para el transpo
+frágil- y como si fuera poco , el Jet Bag tiene un cierre hermético reusable , 
+o para adquirir tu bolsa , visita Jet Bag .
+
+
+Article # 72933
+[love, ['EN']]
+Displaying 1 of 1 matches:
+ersando con Trilce Ortiz , sexpert y love adviser de Ellaysusexo .com , quien 
+
+[adviser, ['EN']]
+Displaying 1 of 1 matches:
+o con Trilce Ortiz , sexpert y love adviser de Ellaysusexo .com , quien nos dio
+
+[one, ['EN']]
+Displaying 1 of 1 matches:
+erlo . Yo creo que así se trate de un one night stand o del amor de tu vida , l
+
+[night, ['EN']]
+Displaying 1 of 1 matches:
+. Yo creo que así se trate de un one night stand o del amor de tu vida , lo más
+
+
+Article # 68583
+[Autism, ['EN']]
+Displaying 1 of 1 matches:
+s niñas ) , de acuerdo con datos de Autism Society , una asociación dedicada a
+
+[Society, ['EN']]
+Displaying 1 of 1 matches:
+ ) , de acuerdo con datos de Autism Society , una asociación dedicada al mejora
+
+[Rain, ['EN']]
+Displaying 1 of 1 matches:
+do por Dustin Hoffman en la película Rain Man . Pero el autismo , que es un tr
+
+[publican, ['EN']] <--- Example for misclassification
+Displaying 1 of 1 matches:
+, gracias a nuevos estudios que se publican a menudo . Desafortunadamente , la
 
 ---
 
@@ -100,6 +161,77 @@ Wenn ein Merkmal als solches wahrgenommen und mit Bedeutung ausgestattet wird, k
 
 ---
 
+# Resulting Cathegories
+
+1. Named Entities:
+   * heaps of commercials;
+   * journals, newspapers, magazines
+   * organizations
+   * novels/books
+   * movies/TV shows or programms
+   * events
+   * places
+   * music
+   * shops/labels
+   * companies
+   * youtube videos
+   * US holidays
+
+2. English vocab which has more or less entered Spanish (presumably):
+3. "One night stand"/sex stuff (#72933)
+3a Dating
+4. Misc: one English word without category at the moment
+5. Cool/slang/hip...
+6. English discourse markers as part of the Spanish text:
+7. English interjections as part of the Spanish text:
+8. Further TV/Media/Movies stuff
+9. Music stuff
+10. Food/cooking stuff
+mostly in Spanish and then in paranthesis the English words
+presumption: people living in the US would know (specific) foods better by there English name;
+people living in the US should be able to buy stuff under their English name, since it's unlikely that the supermarket has Spanish labels
+e.g. if the food is not very popular in their country of origin; (couldn't say that for baking soda probably though^^)
+  * Organic/healthy/lifestyle bla
+  ...
+10a. Diet
+11. Fashion stuff
+  * Clothing
+  * Hair
+  * Colors
+  * Makeup
+  * Misc: "look"(x60) and "vintage"
+12. Half translated English idiomatic expressions
+    * full: "vivimos el presente a full" (#75882)
+    * off: "la voz en off" (#71538)
+    * footsie: "jugar footsie" ("to play footsie with sb" -- mit jmd füßeln) (#78122)
+    * happily ever after: "casarse y vivir su happily ever after" (#78457)
+    * in love: "ahora esta in love con este hombre" (#78457)
+12a. English Idiomatic expressions / collocations
+    * decision makers: "son verdaderas decision makers" (#45099)
+    * behind the scenes: "echale un vistazo al behind the scenes" (#64443)
+12b. Whole phrases in English, not necessarily idiomatic
+    * "Happy party!" (#76085) (whole phrases?)
+    * "Mix and match , la pareja ideal" (#62615)
+    * "Wait , what !" (#76337)
+13. Personal descriptions
+14. Tech/Internet stuff (strange, would have expected more of this to have appeared by now; possibly tokens cathegorized as UNK-> have a look): sind aber nicht wenige
+14a. Social media:
+14b. Internet
+14c. (Smart)phone
+15. Direct quotes:
+16. Fitness stuff:
+16a. Real sport:
+17. Cosmetic stuff:
+17a. (Pseudo)medical stuff
+18. Occupation Positions (#78284):
+20. Electrodomestics (all found occurrences)
+    * cooler: " la “neverita” ( cooler ) y a disfrutar" (electrodomestics) (#35124)
+    * low: "un ventilador encendido en low en casa" (#73183) (categoria electrodomesticos?)
+    * microwave: "algunos tips basicos para usar el microwave sin descuidar tu salud" (#36814) (categoria electrodomesticos?)
+    * juicer: "un exprimidor electrico (juicer)" (#60114)
+
+---
+
 # Linguistic interpretation
 
 Kategorien:
@@ -111,6 +243,13 @@ Kategorien:
 * the dominant (both in numbers and power) group of people in the USA speaks English
 * serves to avoid misunderstandings/clarify (zb cooking recipes)
 * es wird ein bestimmter Lebensstil kreiert/bedient
+
+Earlier Intents on Explanation
+------------------------------
+* Movies, Book names are not translated;
+  audience living in the USA much more likely to know the stuff under their English names
+* the rest of the named entities: even less expected to be translated?
+* multiple clinics, hospitals and universities among the organizations (but that does not look that exciting)
 
 ---
 
