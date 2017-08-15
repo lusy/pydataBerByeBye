@@ -21,14 +21,23 @@ As an added bonus we will also briefly touch on some theories from the socioling
 * problem: hausarbeit; scrape articles; identify English occurrances; analyse them
 * approach: use python!
   * scrape articles (pattern, request) -> possible problems (irregular html structure of the magazine)
+    ** 3 years old work; pattern seemed a better choice at the time, today it is still not ported for python3
+    ** non-exhaustive scrape because of irregular html; scrapy? it would have been an option back then as well, I just did not do my research properly
+  * download and clean libre office spelling dictionaries
+    ** make intersection and differences (Spanish common and Spanish regional); not very prolific
   * clean articles from html markup -> result we use for next step: plain text
   * segment article texts in tokens (use ' ' as delimiter)
+    * nltk.word_tokenize()
   * was hab ich nochma mit nltk gemacht?
-  * identify English occurrences in the Spanish texts (download and apply the libre office Spanish and English language dicts); label each token according to appearance in dictionaries (EN, ES or both)
+  * identify English occurrences in the Spanish texts (download and apply the libre office Spanish and English language dicts); label each token according to appearance in dictionaries (EN, ES, ES_regional --> multiple labels possible; PUNCT; UNK)
+    * annotate punctuation (hand compiled list)
+    * convert tokens to lower case before checking
     * problems: some words exist in both languages (e.g.: "me", "no", "hay", etc.)
     * dictionaries non-exhaustive: seldom words are missing
     * not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, .. for the verbs) --> it is possible to generate flexions forms and add them to dicts, but it makes the process a whole lot more complicated
   * consider all words marked as EN only and their surrounding context
+    * use NLTK Texts.ConcordanceIndex() for generating context
+     --> BEISPIELE
 * brief overview over resulting cathegories
 * discuss alternative approaches on each step (or on the whole)
   * e.g. for scraping you can also use BeautifulSoup
