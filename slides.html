@@ -62,12 +62,13 @@
 <li class="fragment">possible problems: messy html structure of the magazine</li>
 <li class="fragment">alternative approach: systematic crawling with <code>scrapy</code>?</li>
 <li class="fragment">strip articles from html markup</li>
+<li class="fragment">segment article texts in tokens: non-trivial</li>
 </ul>
 </section>
 <section class="slide level1">
 
 <h3 id="cs-compilers">cs: compilers</h3>
-<pre><code>$ &#39;main&#39;
+<pre class="fragment"><code>$ &#39;main&#39;
  \
   \-[Someone set us up the bomb.\n\]-b--#</code></pre>
 <h3 id="linguistics">linguistics</h3>
@@ -75,7 +76,6 @@
 <li class="fragment">&quot;self-esteem&quot;/&quot;self esteem&quot;</li>
 <li class="fragment">&quot;machine learning&quot;</li>
 <li class="fragment"><p>&quot;you're&quot;</p></li>
-<li class="fragment">segment article texts in tokens: non-trivial</li>
 <li class="fragment"><p><code>nltk.word_tokenize()</code></p></li>
 </ul>
 </section>
@@ -94,15 +94,6 @@
 <li class="fragment">maintainer: dictionaries non-exhaustive: (seldom) words are missing</li>
 <li class="fragment">linguistic: not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, etc. for the verbs)</li>
 <li class="fragment">linguistic: some words exist in both languages (e.g.: &quot;me&quot;, &quot;no&quot;, &quot;hay&quot;, &quot;sin&quot;, &quot;soy&quot;, &quot;sea&quot; etc.)</li>
-</ul>
-</section>
-<section class="slide level1">
-
-<h2 id="alternatives">alternatives</h2>
-<ul>
-<li class="fragment">generate more complete word lists?</li>
-<li class="fragment"><code>langid.py</code>?</li>
-<li class="fragment"><code>nltk.corpus.words.words()</code> for English?</li>
 </ul>
 </section>
 <section class="slide level1">
@@ -129,6 +120,15 @@ Article # 51108
 [charter, [&#39;EN&#39;]]
 Displaying 1 of 1 matches:
 as , tanto públicas como privadas y charter . El sitio es muy fácil de usar , y</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="alternatives">alternatives</h2>
+<ul>
+<li class="fragment">generate more complete word lists?</li>
+<li class="fragment"><code>langid.py</code>?</li>
+<li class="fragment"><code>nltk.corpus.words.words()</code> for English?</li>
+</ul>
 </section>
 <section class="slide level1">
 
