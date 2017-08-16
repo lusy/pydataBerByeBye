@@ -4,6 +4,15 @@
 
 ---
 
+# What is this talk about
+
+* scraping webpages
+* lingusitics
+  * processing linguistic data
+  * interpreting linguistic data
+
+---
+
 # Motivation
 
 ![](siempre_mujer_screenshot_201708.png)
@@ -16,73 +25,82 @@
 
 ---
 
-# What is this talk about
-
-* scraping webpages
-* lingusitics
-  * processing linguistic data
-  * interpreting linguistic data
-
----
-
 ## What have I done?
 
-* quick and dirty
-* procedural, one task at time (Unix approach^^)
-* python 2.7 (2013)
+* scrape articles: 1419
+  * possible problems: messy html structure of the magazine
+  * alternative approach: systematic crawling with `scrapy`?
+* strip articles from html markup
 
 ---
 
-* scrape articles (pattern, request)
-  * possible problems: irregular html structure of the magazine
-* also note which category each article was in on the website (fashion, lifestyle, love, beauty, fitness, etc..)
-* clean articles from html markup
-* segment article texts in tokens
-  * nltk.word_tokenize()
+* segment article texts in tokens: non-trivial
+cs
+* compilers
+* rail
+>$ 'main'
+> \
+>  \-[Someone set us up the bomb.\n\]-b--#
+
+linguistics
+* self-esteem/self esteem
+* machine learning
+
+* nltk.word_tokenize()
 
 ---
 
-* download and clean libre office spelling dictionaries
+* download and clean openoffice spelling dictionaries
   * intersection and differences (Spanish common and Spanish regional);
 * label each token according to appearance in dictionaries (EN, ES, ES_regional --> multiple labels possible; PUNCT; UNK)
-  Problems:
-    * dictionaries non-exhaustive: seldom words are missing
-    * not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, .. for the verbs) --> it is possible to generate flexions forms and add them to dicts, but it makes the process a whole lot more complicated
-  * some words exist in both languages (e.g.: "me", "no", "hay", "sin", "soy", "sea" etc.)
 
 ---
 
-* consider all words marked as EN only and their surrounding context
-  * use NLTK Texts.ConcordanceIndex() for generating context
+## Problems:
 
-Article # 72933
-[love, ['EN']]
-Displaying 1 of 1 matches:
-ersando con Trilce Ortiz , sexpert y love adviser de Ellaysusexo .com , quien
-
-[adviser, ['EN']]
-Displaying 1 of 1 matches:
-o con Trilce Ortiz , sexpert y love adviser de Ellaysusexo .com , quien nos dio
-
-[one, ['EN']]
-Displaying 1 of 1 matches:
-erlo . Yo creo que así se trate de un one night stand o del amor de tu vida , l
-
-[night, ['EN']]
-Displaying 1 of 1 matches:
-. Yo creo que así se trate de un one night stand o del amor de tu vida , lo más
+* maintainer: dictionaries non-exhaustive: (seldom) words are missing
+* linguistic: not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, .. for the verbs) --> it is possible to generate flexions forms and add them to dicts, but it makes the process a whole lot more complicated
+* linguistic: some words exist in both languages (e.g.: "me", "no", "hay", "sin", "soy", "sea" etc.)
 
 ---
 
-# Excursion into (socio-)linguistics
+## alternatives
 
-* code switching
-* borrowing
-* language shift
-* socio indexicality
- ** first-order index
- ** secondary index
-* indexical field/style
+* generate more complete word lists?
+* `langid.py`?
+* `nltk.corpus.words.words()` for English?
+
+---
+
+* consider all tokens marked as EN only and their surrounding context
+* 3271 distinct appearances
+* use NLTK Texts.ConcordanceIndex() for generating context
+
+---
+
+> Article # 53990
+> [baby, ['EN']]
+> Displaying 4 of 4 matches:
+> epollo púrpura , y todos los “bebés” baby carrots , baby remolachas , baby gre
+> , y todos los “bebés” baby carrots , baby remolachas , baby greens , baby arúg
+> és” baby carrots , baby remolachas , baby greens , baby arúgula . También el n
+> ts , baby remolachas , baby greens , baby arúgula . También el nabo , los chal
+>
+> ------------------------------------------------------------
+>
+> Article # 51108
+> [charter, ['EN']]
+> Displaying 1 of 1 matches:
+> as , tanto públicas como privadas y charter . El sitio es muy fácil de usar , y
+
+---
+
+## sorting into categories
+
+* manually!
+* alternative: automatic classification into categories
+  * supervised learning
+  * clustering
 
 ---
 
@@ -158,24 +176,15 @@ english names in parents
 
 ---
 
-# Linguistic interpretation
+# Excursion into (socio-)linguistics
 
-Kategorien:
-* Named Entities
-* Kochrezepte/Essen
-* “look”
-4.2 Interpretation
-* English is the more prestigious language;
-* the dominant (both in numbers and power) group of people in the USA speaks English
-* serves to avoid misunderstandings/clarify (zb cooking recipes)
-* es wird ein bestimmter Lebensstil kreiert/bedient
-
-Earlier Intents on Explanation
-------------------------------
-* Movies, Book names are not translated;
-  audience living in the USA much more likely to know the stuff under their English names
-* the rest of the named entities: even less expected to be translated?
-* multiple clinics, hospitals and universities among the organizations (but that does not look that exciting)
+* code switching
+* borrowing
+* language shift
+* socio indexicality
+ ** first-order index
+ ** secondary index
+* indexical field/style
 
 Warum passieren beide?: "powerful socioeconomic and cultural forces", die Borrowings in Kontaktsi-
 tuationen zwischen zwei Kulturen fördern(vgl. Zentella, 1990).
@@ -185,20 +194,6 @@ tuationen zwischen zwei Kulturen fördern(vgl. Zentella, 1990).
 * Prestige: die Sprache oder Varietät, aus der entlehnt wird, wird als prestigeträchtiger angesehen.
 * im konkreten Fall “Entlehnungen zwischen dem Spanischen und dem Englischen in den USA” können Anglizismen als neutralisierende Begriffe zwischen den ver-
 schiedenen Varietäten des Spanischen dienen.
----
-
-# Future work / What would I do differently today
-
-* pattern is not ported for python3
-    ** 3 years old work; pattern seemed a better choice at the time, today it is still not ported for python3
-* non-exhaustive scrape because of irregular html; scrapy? it would have been an option back then as well, I just did not do my research properly
-* generate more complete word lists
-* better approach to language recognition?
-  * `langid.py` detects language for whole snippet with certain probability
-  * nltk.corpus.words.words() for English only
-* automatic classification into categories
-  * supervised learning
-  * clustering
 
 ---
 
@@ -207,6 +202,7 @@ schiedenen Varietäten des Spanischen dienen.
 * linguistics is awesome
 * coding skills go a long way
 * non-trivial problems
+* "lifestyle"/"women"-magazines are evil
 
 ---
 
