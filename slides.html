@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Using python for sociolinguistic analysis">
+  <title>Es hora de decir bye-bye</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Es hora de decir bye-bye</h1>
+  <h2 class="author">Using python for sociolinguistic analysis</h2>
+  <h3 class="date">lusy</h3>
+</section>
+
+<section id="motivation" class="slide level1">
+<h1>Motivation</h1>
+<figure>
+<img src="siempre_mujer_screenshot_201708.png" />
+</figure>
+</section>
+<section class="slide level1">
+
+<p>8 señales de una amiga tóxica en las redes sociales</p>
+<blockquote>
+<p>Maquinita de criticar: Si tu amiga se la pasa poniendo memes que critican tu postura religiosa, se burlan abiértamente de los homosexuales y apoyan frases que parecen de la época de la esclavitud que te incomodan. <em>Es hora de decir bye-bye.</em></p>
+</blockquote>
+</section>
+<section id="what-is-this-talk-about" class="slide level1">
+<h1>What is this talk about</h1>
+<ul>
+<li>scraping webpages</li>
+<li>lingusitics</li>
+<li>processing linguistic data</li>
+<li>interpreting linguistic data</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="what-have-i-done">What have I done?</h2>
+<ul>
+<li>quick and dirty</li>
+<li>procedural, one task at time (Unix approach^^)</li>
+<li>python 2.7 (2013)</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<ul>
+<li>scrape articles (pattern, request)</li>
+<li>possible problems: irregular html structure of the magazine</li>
+<li>also note which category each article was in on the website (fashion, lifestyle, love, beauty, fitness, etc..)</li>
+<li>clean articles from html markup</li>
+<li>segment article texts in tokens</li>
+<li>nltk.word_tokenize()</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<ul>
+<li>download and clean libre office spelling dictionaries</li>
+<li>intersection and differences (Spanish common and Spanish regional);</li>
+<li>label each token according to appearance in dictionaries (EN, ES, ES_regional --&gt; multiple labels possible; PUNCT; UNK) Problems:
+<ul>
+<li>dictionaries non-exhaustive: seldom words are missing</li>
+<li>not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, .. for the verbs) --&gt; it is possible to generate flexions forms and add them to dicts, but it makes the process a whole lot more complicated</li>
+</ul></li>
+<li>some words exist in both languages (e.g.: &quot;me&quot;, &quot;no&quot;, &quot;hay&quot;, &quot;sin&quot;, &quot;soy&quot;, &quot;sea&quot; etc.)</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<ul>
+<li>consider all words marked as EN only and their surrounding context</li>
+<li>use NLTK Texts.ConcordanceIndex() for generating context</li>
+</ul>
+<p>Article # 72933 [love, ['EN']] Displaying 1 of 1 matches: ersando con Trilce Ortiz , sexpert y love adviser de Ellaysusexo .com , quien</p>
+<p>[adviser, ['EN']] Displaying 1 of 1 matches: o con Trilce Ortiz , sexpert y love adviser de Ellaysusexo .com , quien nos dio</p>
+<p>[one, ['EN']] Displaying 1 of 1 matches: erlo . Yo creo que así se trate de un one night stand o del amor de tu vida , l</p>
+<p>[night, ['EN']] Displaying 1 of 1 matches: . Yo creo que así se trate de un one night stand o del amor de tu vida , lo más</p>
+</section>
+<section id="excursion-into-socio-linguistics" class="slide level1">
+<h1>Excursion into (socio-)linguistics</h1>
+<ul>
+<li>code switching</li>
+<li>borrowing</li>
+<li>language shift</li>
+<li>socio indexicality ** first-order index ** secondary index</li>
+<li>indexical field/style</li>
+</ul>
+</section>
+<section id="resulting-categories" class="slide level1">
+<h1>Resulting Categories</h1>
+</section>
+<section class="slide level1">
+
+<h2 id="named-entities">named entities</h2>
+<p>&quot;Converse All-Star&quot; (#57677, 52997), &quot;iPod Shuffle&quot; (#57677, #29888), &quot;Daily Mail&quot; (#64324, #64721, #66655, #42121, #69357), &quot;American Diabetes Association&quot; (#75801), ...</p>
+</section>
+<section class="slide level1">
+
+<h2 id="techinternet">tech/internet</h2>
+<ul>
+<li>clic: &quot; Haz clic en Send y eso es todo &quot; (#23166)</li>
+<li>clic: &quot; Haz clic aquí &quot; (#61262)</li>
+<li>clic: &quot;haz clic en “donate”&quot; (#46929)</li>
+<li>hashtag: &quot;donde el hashtag “ # RIP # GabrielGarcíaMarquez” se ha posicio&quot; (#69261)</li>
+<li>trending topic: &quot;A través de las redes sociales la convirtieron en hashtag y ha llegado a ser trending topic&quot; (#75913)</li>
+<li>trending topic: &quot;no ha tardado en colocarse como “trending topic” en las redes sociales&quot; (#69261)</li>
+<li>trending topic: &quot;se convirtió en un trending topic en las redes sociales&quot; (#73673)</li>
+<li>follower: &quot;por nuestros followers en las redes sociales&quot; (#73189) (or open social media cathegory)</li>
+<li>tweet: &quot; mandarle un tweet para que sepa que lo piensas &quot; (#73189) (or open social media cathegory)</li>
+<li>wifi: &quot;con frecuencia a través de WiFi&quot; (#33890)</li>
+<li>wifi: &quot;tiene capacidad de WiFi integrada&quot; (#18762)</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="foodcooking">food/cooking</h2>
+<p>life-style shit * gluten free: &quot;prefieres alimentos gluten-free,&quot; (#65784) * baby: &quot;4 tazas de espinacas tiernas (baby) limpias&quot; (#54045) * wild: &quot; pavo wild con salvia y ajo &quot; (#64931) * smoothie: &quot;el saludable smoothie de fresas&quot; (#65851) * coffeehouse: &quot;mirarán de forma extraña en tu coffeehouse favorito&quot; (#76571) (+ more stuff: vintage, look,..) english names in parents * bacon: &quot;panceta ( bacon )&quot; (#72354) * &quot;la anchoa y la caballa ( mackerel )&quot; (#75194), * cranberry: &quot;Por ejemplo: Cranberry (arandanos)&quot; (#76140) * apricot: &quot;con un albaricoque (apricot)&quot; (#41196) --&gt; English translation in parents. * kale: &quot;col rizada (kale, en ingles)&quot; (#65784) * turmeric: &quot;curcuma fresca (turmeric)&quot; (#78170)</p>
+</section>
+<section class="slide level1">
+
+<h2 id="sex">sex</h2>
+<ul>
+<li>sex appeal: &quot;elevar tu nivel de sex-appeal&quot; (#61317)</li>
+<li>sex appeal: &quot;tiene sex appeal y te llama la atencion&quot; (#78736)</li>
+<li>sexy: &quot;no trata de ser sexy&quot; (#61317)</li>
+<li>sexy: &quot;hay tantos tipos de sexy como hay mujeres&quot; (#61317)</li>
+<li>sexy: &quot;Qué es sexy ?&quot; (#61317)</li>
+<li><h2 id="hot-para-tener-una-noche-súper-hot-73447">hot: &quot;para tener una noche súper hot&quot; (#73447)</h2></li>
+</ul>
+<h2 id="english-idiomscollocations">English idioms/collocations</h2>
+<pre><code>* full: &quot;vivimos el presente a full&quot; (#75882)
+* off: &quot;la voz en off&quot; (#71538)
+* footsie: &quot;jugar footsie&quot; (&quot;to play footsie with sb&quot; -- mit jmd füßeln) (#78122)
+* happily ever after: &quot;casarse y vivir su happily ever after&quot; (#78457)
+* in love: &quot;ahora esta in love con este hombre&quot; (#78457)</code></pre>
+<p>12a. English Idiomatic expressions / collocations * decision makers: &quot;son verdaderas decision makers&quot; (#45099) * behind the scenes: &quot;echale un vistazo al behind the scenes&quot; (#64443) 12b. Whole phrases in English, not necessarily idiomatic * &quot;Happy party!&quot; (#76085) (whole phrases?) * &quot;Mix and match , la pareja ideal&quot; (#62615) * &quot;Wait , what !&quot; (#76337)</p>
+</section>
+<section id="linguistic-interpretation" class="slide level1">
+<h1>Linguistic interpretation</h1>
+<p>Kategorien: * Named Entities * Kochrezepte/Essen * “look” 4.2 Interpretation * English is the more prestigious language; * the dominant (both in numbers and power) group of people in the USA speaks English * serves to avoid misunderstandings/clarify (zb cooking recipes) * es wird ein bestimmter Lebensstil kreiert/bedient</p>
+<h2 id="earlier-intents-on-explanation">Earlier Intents on Explanation</h2>
+<ul>
+<li>Movies, Book names are not translated; audience living in the USA much more likely to know the stuff under their English names</li>
+<li>the rest of the named entities: even less expected to be translated?</li>
+<li>multiple clinics, hospitals and universities among the organizations (but that does not look that exciting)</li>
+</ul>
+<p>Warum passieren beide?: &quot;powerful socioeconomic and cultural forces&quot;, die Borrowings in Kontaktsi- tuationen zwischen zwei Kulturen fördern(vgl. Zentella, 1990). * Begriffe, die kulturelle Phänomene beschreiben, die in der Muttersprache und der dazugehörigen Kultur in der Form nicht existieren. Beispiele hierfür wären [kei/keike/keiki] “cake”, [yins/blu yines] “(blue)jeans” (vgl. Zentella, 1990) oder “la boila” (boiler). * Ähnlichkeit in der phonologischen oder morphologischen Struktur eines Wortes. Deshalb wird das spanische Wort “libreria” (Buchladen) auf einmal im Spanischen auch für Bibliothek (auf Englisch “library”, auf Spanisch “biblioteca”) benutzt. * einer der universellen Prinzipien des Sprachwandels – Sparsamkeit: das entlehnteWort ist kürzer. Deshalb wird zum Beispiel “florero” durch “vase” ersetzt (vgl. Zentella, 1990). * Prestige: die Sprache oder Varietät, aus der entlehnt wird, wird als prestigeträchtiger angesehen. * im konkreten Fall “Entlehnungen zwischen dem Spanischen und dem Englischen in den USA” können Anglizismen als neutralisierende Begriffe zwischen den ver- schiedenen Varietäten des Spanischen dienen. ---</p>
+</section>
+<section id="future-work-what-would-i-do-differently-today" class="slide level1">
+<h1>Future work / What would I do differently today</h1>
+<ul>
+<li>pattern is not ported for python3 ** 3 years old work; pattern seemed a better choice at the time, today it is still not ported for python3</li>
+<li>non-exhaustive scrape because of irregular html; scrapy? it would have been an option back then as well, I just did not do my research properly</li>
+<li>generate more complete word lists</li>
+<li>better approach to language recognition?</li>
+<li><code>langid.py</code> detects language for whole snippet with certain probability</li>
+<li>nltk.corpus.words.words() for English only</li>
+<li>automatic classification into categories</li>
+<li>supervised learning</li>
+<li>clustering</li>
+</ul>
+</section>
+<section id="takeaways" class="slide level1">
+<h1>Takeaways</h1>
+<ul>
+<li>linguistics is awesome</li>
+<li>coding skills go a long way</li>
+<li>non-trivial problems</li>
+</ul>
+</section>
+<section id="sources" class="slide level1">
+<h1>Sources</h1>
+<ul>
+<li>this presentation: <a href="https://github.com/lusy/pydataBerByeBye" class="uri">https://github.com/lusy/pydataBerByeBye</a></li>
+<li>code: <a href="https://github.com/lusy/hora-de-decir-bye-bye" class="uri">https://github.com/lusy/hora-de-decir-bye-bye</a></li>
+<li>Eckert, Penelope: Variation and the indexical field. In: Journal of Sociolinguistics 12 (2008), Nr. 4, S. 453–476</li>
+<li>Thomason, Sarah G.: Contact as a Source of Language Change. In: Joseph, Brian D. (Hrsg.) ; Janda, Richard D. (Hrsg.): The Handbook of Historical Linguistics. Oxford, UK : Blackwell Publishing Ltd, 2003, S. 687–712</li>
+<li>Zentella, Ana C.: Lexical Leveling in Four New York City Spanish Dialects: Linguistic and Social Factors. In: Hispania 73 (1990), Nr. 4</li>
+</ul>
+</section>
+<section id="thank-you" class="slide level1">
+<h1>Thank you!</h1>
+<p>This presentation is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA license</a>.</p>
+<p><img src="Cc-by_new_white.svg" alt="by" /> <img src="Cc-sa_white.svg" alt="sa" /></p>
+<p>Shoot me an email:</p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
