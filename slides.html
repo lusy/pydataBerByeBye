@@ -31,163 +31,375 @@
   <h1 class="title">Es hora de decir bye-bye</h1>
   <h2 class="author">Using python for sociolinguistic analysis</h2>
   <h3 class="date">lusy</h3>
+
+  <aside class="notes">
+    Hi, I'm Lusy, and that's the title of my talk.
+  </aside>
 </section>
 
 <section id="what-is-this-talk-about" class="slide level1">
-<h1>What is this talk about</h1>
-<ul>
-<li class="fragment">scraping webpages</li>
-<li class="fragment">linguistics</li>
-<li class="fragment">processing linguistic data</li>
-<li class="fragment">interpreting linguistic data</li>
-</ul>
+  <h1>What is this talk about</h1>
+  <ul>
+  <li class="fragment">scraping webpages</li>
+  <li class="fragment">linguistics</li>
+  <li class="fragment">processing linguistic data</li>
+  <li class="fragment">interpreting linguistic data</li>
+  </ul>
+
+  <aside>
+    This is what I'll be talking about.
+
+    I'm going to tell you about a project I started approx. 3 years ago.
+    At that time I had finished my bachelors studies in computer science (CS) and was questioning whether CS was the thing for me.
+    I was also seriously excited about linguistics, so I decided to preempt the "what ifs" that I'd possibly be asking myself in 10 years if I hadn't done anything about it and enrolled in a Spanish degree.
+    I should've enrolled in linguistics, but was somewhat too lazy to search for a programme, so I took the easy way.
+    People were seriously surprised and telling me stuff like "Oh, this is quite a unusual combination!" and "these two are soo different".
+    And I actually think both have some fundamental similarities.
+    After all, if you have formal CS training you would've heard of Noam Chomsky, the father of the context free grammars.
+    And you would've very much done so, if you've studied linguistics.
+    Chomsky's generative grammar was for decades THE syntax theory.
+    So, you see, linguistics and computer science are not that different at all.
+  </aside>
 </section>
+
 <section id="motivation" class="slide level1">
 <h1>Motivation</h1>
-<figure>
-<img src="siempre_mujer_screenshot_201708.png" />
-</figure>
-</section>
-<section class="slide level1">
+  <figure>
+  <img src="siempre_mujer_screenshot_201708.png" />
+  </figure>
 
+  <aside>
+    I started this project as a part of a sociolinguistics seminar on language contact in metropolies where Roman languages (i.e. Spanish, French, Italian,...) were spoken.
+    I was looking at the webpage of a US magazine, written in Spanish and targeted at Latinx audience.
+    And I was asking myself: "Will I be able to find English snippets in the Spanish text?"
+  </aside>
+</section>
+
+<section class="slide level1">
 <blockquote>
 <p>Si tu amiga se la pasa poniendo memes que critican tu postura religiosa, se burlan abiértamente de los homosexuales y apoyan frases que parecen de la época de la esclavitud que te incomodan. Es hora de decir <em style="color: #ff99ff;">bye-bye</em>.</p>
 </blockquote>
+
+  <aside>
+    And indeed, some of the first I found was this sentence.
+    So, I decided to see whether there were more.
+    And whether there was some underlying pattern to the English uses.
+    And this is where my computer science came in handy.
+  </asdie>
+
 </section>
+
 <section class="slide level1">
 
-<h2 id="what-have-i-done">What have I done?</h2>
-<ul>
-<li class="fragment">scrape articles: 1419</li>
-<li class="fragment">possible problems: messy html structure of the magazine</li>
-<li class="fragment">alternative approach: systematic crawling with <code>scrapy</code>?</li>
-<li class="fragment">strip articles from html markup</li>
-<li class="fragment">segment article texts in tokens: non-trivial</li>
-</ul>
+  <h2 id="what-have-i-done">What have I done?</h2>
+  <ul>
+  <li class="fragment">scrape articles: 1419</li>
+  <li class="fragment">possible problems: messy html structure of the magazine</li>
+  <li class="fragment">alternative approach: systematic crawling with <code>scrapy</code>?</li>
+  <li class="fragment">strip articles from html markup</li>
+  <li class="fragment">segment article texts in tokens: non-trivial</li>
+  </ul>
+
+  <aside>
+    I wrote a script with which I scraped as many articles as possible.
+    You know, html structure of websites is often messy (it was definitely the case), so identifying the urls for all the individual articles was not easy.
+    And I don't claim to have done it.
+    I just took as many as I could.
+    I came up with some 1419 articles.
+    In hindsight, I could've probably used a more systematic approach.
+    <em>scrapy</em> seems to be a python tool capable of systematic crawling (haven't tried it yet).
+    So this is a potential candidate for further work.
+    Then, I stripped the articles of the html markup, so that I had only the articles' plain text.
+    After all, I wanted to have the articles' text and I wanted to know where exactly the text was in English.
+    The next step was to segment the texts in tokens (and identify the English ones).
+    Token segmentation is non-trivial.
+  </aside>
+
 </section>
+
 <section class="slide level1">
 
-<h3 id="cs-compilers">cs: compilers</h3>
-<pre class="fragment"><code>$ &#39;main&#39;
- \
-  \-[Someone set us up the bomb.\n\]-b--#</code></pre>
-<h3 id="linguistics">linguistics</h3>
-<ul>
-<li class="fragment">&quot;self-esteem&quot;/&quot;self esteem&quot;</li>
-<li class="fragment">&quot;machine learning&quot;</li>
-<li class="fragment"><p>&quot;you're&quot;</p></li>
-<li class="fragment"><p><code>nltk.word_tokenize()</code></p></li>
-</ul>
+  <h3 id="cs-compilers">cs: compilers</h3>
+  <pre class="fragment"><code>$ &#39;main&#39;
+   \
+    \-[Someone set us up the bomb.\n\]-b--#</code></pre>
+  <h3 id="linguistics">linguistics</h3>
+  <ul>
+  <li class="fragment">&quot;self-esteem&quot;/&quot;self esteem&quot;</li>
+  <li class="fragment">&quot;machine learning&quot;</li>
+  <li class="fragment"><p>&quot;you're&quot;</p></li>
+  <li class="fragment"><p><code>nltk.word_tokenize()</code></p></li>
+  </ul>
+
+  <aside>
+    Let's take a step back and consider token segmentation in computer science.
+    You need it very much when you're building a compiler, right?
+    When you're trying to translate a higher order programming language into machine code, the first step is to identify the tokens in your code snippet/programm (also known as lexing).
+    You may think, "Well, that's not incredibly demanding: you just take anything between two spaces or blanks, and voilà, you've got your tokens".
+    Yeah, well, it turns out, sometimes it's not that easy.
+
+    Take a look at the code snippet on the slide.
+    Does anyone identify what this is?
+    It's a very simple programm written in the esotheric programming language Rail.
+    Each Rail programm assumes a train which starts at the $ symbol and travels along the rails (/,\,-,|) right up to the end symbol (#), interpreting everything it comes upon along the way.
+    So, what we've got here is a train starting at $, printing a string (identified by the []) and crashing programmatically at the b ("b" is for "boom").
+    How do you lex a Rail programm?
+    Suddenly, it's not the easy game of picking up everything between two blanks anymore, but you need to process two-dimensional arrays instead.
+    It's not necessarily rocket science.
+    My point is simply that the lexing task may be more difficult than you would've initially thought.
+
+    Well, in linguistics, it's not that easy to identify the "English words" either.
+    At the beginning, you may want to identify words.
+    But there's actually no universal definition of what a word is.
+    Everything between two blanks?
+    Well, how about stuff like "self-esteem" or "self esteem" (which apparently are both valid spellings)?
+    How about stuff that is written separately but very obviously belongs together, such as "machine learning"?
+    And what do we do with abbreviations in the fashion of "you're", "don't", etc.?
+    In the end, I actually pretty much separated the tokens along the blanks.
+    I used a function from python's nltk to do this: <em>nltk.word_tokenize()</em>.
+    It does a bit of additional stuff like separating punctuation or tokenizing "you're" in "you" and "'re".
+    But mostly it just returns everything between two blanks.
+
+    If you have never used nltk before, I strongly recommend that you go ahead and play around with it.
+    Even if you're not all that interested in linguistics.
+    It has tons of awesome features.
+    You can talk to a variety of chat bots or generate texts "in the style of" Jane Austin, the Bible or the Wall Street Journal.
+    So, you see, it's great (:
+  </aside>
+
 </section>
+
 <section class="slide level1">
 
-<ul>
-<li class="fragment">download and clean openoffice spelling dictionaries</li>
-<li class="fragment">intersection and differences (Spanish common and Spanish regional);</li>
-<li class="fragment">label each token according to appearance in dictionaries (EN, ES, ES_regional --&gt; multiple labels possible; PUNCT; UNK)</li>
-</ul>
+  <ul>
+  <li class="fragment">download and clean openoffice spelling dictionaries</li>
+  <li class="fragment">intersection and differences (Spanish common and Spanish regional);</li>
+  <li class="fragment">label each token according to appearance in dictionaries (EN, ES, ES_regional --&gt; multiple labels possible; PUNCT; UNK)</li>
+  </ul>
+
+  <aside>
+    But let us return to the problem at hand.
+    Now I had a list of tokens for each article.
+    And I wanted to know which of them were in English.
+    It turns out, this was not an easy task either.
+    At the time I came up with following approach: I downloaded the open office spelling dictionaries.
+    And matched my tokens against them.
+    That's the short version.
+    The more detailed version:
+    There are actually multiple Spanish and English spelling dictionaries: there's US and British and Australian English; and there are Mexican, peninsular, Cuban, ... Spanish.
+    And they have some differences in vocabulary.
+    So, I did following: I downloaded the US English dictionary. And all the Spanish dictionaries but the peninsular one (the Spanish variety spoken in Spain).
+    I compiled an intersection of all Spanish dictionaries, so I had a "common Spanish dictionary".
+    I then subtracted the "common Spanish dictionary" from the single ones and had "regional Spanish dictionaries" with words that seemed to be specific for this particular dictionary.
+    Next, I compared all the articles' tokens to the dictionaries (and to a manually assembled list of punctuation marks PUNCT) and labeled every token according to the dictionaries it appeared in.
+    Multiple labels were possible.
+    If a token was not found anywhere, I marked it as unknown (UNK).
+  </aside>
+
 </section>
+
 <section class="slide level1">
 
-<h2 id="problems">Problems:</h2>
-<ul>
-<li class="fragment">maintainer: dictionaries non-exhaustive: (seldom) words are missing</li>
-<li class="fragment">linguistic: not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, etc. for the verbs)</li>
-<li class="fragment">linguistic: some words exist in both languages (e.g.: &quot;me&quot;, &quot;no&quot;, &quot;hay&quot;, &quot;sin&quot;, &quot;soy&quot;, &quot;sea&quot; etc.)</li>
-</ul>
+  <h2 id="problems">Problems:</h2>
+  <ul>
+  <li class="fragment">maintainer: dictionaries non-exhaustive: (seldom) words are missing</li>
+  <li class="fragment">linguistic: not every word is present in all its forms (e.g. singular, plural, m, f forms; or every tempus, modus, etc. for the verbs)</li>
+  <li class="fragment">linguistic: some words exist in both languages (e.g.: &quot;me&quot;, &quot;no&quot;, &quot;hay&quot;, &quot;sin&quot;, &quot;soy&quot;, &quot;sea&quot; etc.)</li>
+  </ul>
+
+  <aside>
+    In theory the approach sounded relatively plausible.
+    In praxis, it was quite messy.
+    First, the dictionaries were far from being complete perfect lists of all the words in the language (variety) in question.
+    Not only seldom words were missing, but often some quite common ones were too.
+    Every dictionary had a different degree of compeleteness, according to, I guess, the vigor of its maintainer.
+    So, my computation of common and regional Spanish dictionaries was a complete bust: if a word existed only in certain regional dictionaries, this didn't necessarily mean it was actually common for this variety and not for others.
+    It mostly meant that the other Spanish dictionaries weren't maintained very well.
+
+    Moreover, I was faced with a "linguistic" completeness problem:
+    not every word was present in all its forms.
+    Similar to paper dictionaries, most probably only the "basic" form of a word would be listed.
+    For example, the English verb "swim" would most likely appear only as "swim".
+    But how about "swims" or "swimming" or "swam" or "swum"?
+    They would be tagged as UNK in my analysis despite being legitimate English words.
+
+    And last, I had a homographes problem.
+    These are words written the same way in both languages (but mostly meaning completely different things).
+    For example, "me" or "no" exist in Spanish and mean more or less the same thing as in English.
+    But so do "hay" (Spanish for "there is"), "sin" (Spanish for "without"), "soy" (Spanish for "I am") and so on.
+    So, coupled with the incompleteness problem I mentioned above this led to words being marked as English only, although, upon consulting the context, we had to do with very clearly Spanish words.
+
+    Consequently, the labeling was everything else but tidy and unambiguous.
+  </aside>
 </section>
+
 <section class="slide level1">
 
-<ul>
-<li class="fragment">consider all tokens marked as EN only and their surrounding context</li>
-<li class="fragment">3271 distinct appearances</li>
-<li class="fragment">use NLTK <code>Texts.ConcordanceIndex()</code> for generating context</li>
-</ul>
+  <ul>
+  <li class="fragment">consider all tokens marked as EN only and their surrounding context</li>
+  <li class="fragment">3271 distinct appearances</li>
+  <li class="fragment">use NLTK <code>Texts.ConcordanceIndex()</code> for generating context</li>
+  </ul>
+
+  <aside>
+    Finally, I took all tokens which were labeled only with EN and looked at them in their surrounding contexts.
+    I had 3271 "distinct" EN tokens in all articles.
+    This means, if a token appeared multiple times in the same article, it was counted only once, and it was counted once for each article in which it appeared.
+    I used another awesome nltk function for generating the contexts: <em>Texts.ConcordanceIndex()</em>
+  </aside>
 </section>
+
 <section class="slide level1">
 
-<pre><code>Article # 53990
-[baby, [&#39;EN&#39;]]
-Displaying 4 of 4 matches:
-epollo púrpura , y todos los “bebés” baby carrots , baby remolachas , baby gre
-, y todos los “bebés” baby carrots , baby remolachas , baby greens , baby arúg
-és” baby carrots , baby remolachas , baby greens , baby arúgula . También el n
-ts , baby remolachas , baby greens , baby arúgula . También el nabo , los chal
+  <pre><code>Article # 53990
+  [baby, [&#39;EN&#39;]]
+  Displaying 4 of 4 matches:
+  epollo púrpura , y todos los “bebés” baby carrots , baby remolachas , baby gre
+  , y todos los “bebés” baby carrots , baby remolachas , baby greens , baby arúg
+  és” baby carrots , baby remolachas , baby greens , baby arúgula . También el n
+  ts , baby remolachas , baby greens , baby arúgula . También el nabo , los chal
 
-------------------------------------------------------------
+  ------------------------------------------------------------
 
-Article # 51108
-[charter, [&#39;EN&#39;]]
-Displaying 1 of 1 matches:
-as , tanto públicas como privadas y charter . El sitio es muy fácil de usar , y</code></pre>
+  Article # 51108
+  [charter, [&#39;EN&#39;]]
+  Displaying 1 of 1 matches:
+  as , tanto públicas como privadas y charter . El sitio es muy fácil de usar , y</code></pre>
+
+  <aside>
+    Here we see an example output of <em>Texts.ConcordanceIndex()</em> for two distinct articles.
+    We can take a look at the contexts in which the tokens "baby" and "charter", marked as EN only, appeared.
+  </aside>
 </section>
+
 <section class="slide level1">
+  <h2 id="alternatives">alternatives</h2>
+  <ul>
+  <li class="fragment">generate more complete word lists?</li>
+  <li class="fragment"><code>langid.py</code>?</li>
+  <li class="fragment"><code>nltk.corpus.words.words()</code> for English?</li>
+  </ul>
+  <aside>
+    At this point, I'd like to briefly mention possible alternative approaches for correctly identifying the language of a token.
+    One of them would've been to try to generate more complete word lists (dictionaries).
+    There are ways to generate different word forms and add them to the dictionaries.
+    However, it's not an easy task, especially when you're trying to solve it for multiple languages.
+    At the time I felt it was way more work than I was willing to invest, so I left it at my imperfect word lists.
 
-<h2 id="alternatives">alternatives</h2>
-<ul>
-<li class="fragment">generate more complete word lists?</li>
-<li class="fragment"><code>langid.py</code>?</li>
-<li class="fragment"><code>nltk.corpus.words.words()</code> for English?</li>
-</ul>
+    A brief consultation of the Internet on the topic pointed me to the <em>langid.py</em> library, used for predicting the language of a piece of text with a certain probability.
+    However, it wouldn't have been really useful for my specific usecase, since I was interested in the language of every single token, not the one of the overall text (which I knew to be Spanish).
+
+    Another approach proposed by people online was using <em>nltk.corpus.words.words()</em> as a dictionary.
+    It is English only, but it could've actually done the trick for recognizing and labeling English tokens (we still would've had the homographes though).
+    Still, it seems to be far more complete than the Open Office US English dictionary I got, so it may actually be worth the try.
+
+    A person from the audience also suggested stemming and identifying the language afterwards.
+    This means, the word is "cropped" down to its "basic" form.
+    (E.g. the basic form, aka stem,  of "swim" is "swim" and the basic form of "bedding" is "bed".)
+    This would help solving the problem of missing word forms alright.
+    Nevertheless I think it's not very suitable solution for the problem at hand, since you'd need two distinct stemmers for Spanish and English and wouldn't actually know which one to apply for which token.
+  </aside>
 </section>
+
 <section class="slide level1">
-
-<h2 id="sorting-into-categories">sorting into categories</h2>
-<ul>
-<li class="fragment">manually!</li>
-<li class="fragment">alternative: automatic classification into categories</li>
-<li class="fragment">supervised learning</li>
-<li class="fragment">clustering</li>
-</ul>
+  <h2 id="sorting-into-categories">sorting into categories</h2>
+  <ul>
+  <li class="fragment">manually!</li>
+  <li class="fragment">alternative: automatic classification into categories</li>
+  <li class="fragment">supervised learning</li>
+  <li class="fragment">clustering</li>
+  </ul>
+  <aside>
+    At the end, I manually reviewed all 3271 tokens in their contexts, decided whether they were actually labeled correctly and tried sorting them into meaningful categories.
+    In a hindsight, I could've at least tried something more automatic here.
+    For example, some kind of supervised learning where I label some occurrences and try to classify the rest according to that.
+    Or at least run a clustering algorithm on the data and see whether something meaningful came out of it.
+    Well, I didn't^^.
+  </aside>
 </section>
+
 <section id="resulting-categories" class="slide level1">
 <h1>Resulting Categories</h1>
+  <aside>
+    I'm going to show you a couple of the resulting categories.
+  </aside>
 </section>
-<section class="slide level1">
 
-<h2 id="named-entities">named entities</h2>
-<p>&quot;Converse All-Star&quot; (#57677, 52997), &quot;iPod Shuffle&quot; (#57677, #29888), &quot;Daily Mail&quot; (#64324, #64721, #66655, #42121, #69357), &quot;American Diabetes Association&quot; (#75801), ...</p>
+<section class="slide level1">
+  <h2 id="named-entities">named entities</h2>
+  <p>&quot;Converse All-Star&quot; (#57677, 52997), &quot;iPod Shuffle&quot; (#57677, #29888), &quot;Daily Mail&quot; (#64324, #64721, #66655, #42121, #69357), &quot;American Diabetes Association&quot; (#75801), ...</p>
+  <aside>
+    The first one is probably the least surprising of all.
+    It's what we call "Named Entities" in Natural Language Processing.
+    So, names of things: products, media, companies, organizations, events, you name it^^.
+    And this definitely makes sense: mostly, these are references to US media (or products, companies, organizations, etc.), so their names are originally English.
+    And even if an established Spanish translation exists (which, I imagine is often not the case), people living in US (regardless of their first language) would be far more likely to recognize the entity in question under its English name.
+  </aside>
 </section>
-<section class="slide level1">
 
-<h2 id="techinternet">tech/internet</h2>
-<ul>
-  <li>&quot;Haz <em style="color: #ff99ff;">clic </em>aquí  &quot; (#61262) (&quot;Click here&quot;)</li>
-  <li>&quot;se convirtió en un <em style="color: #ff99ff;">trending topic</em> en las redes sociales&quot; (#73673) (it became a trending topic in the social networks)</li>
-  <li>&quot;hace compras <em style="color: #ff99ff;">online</em>&quot; (#59254) (&quot;do shopping online&quot;)</li>
-</ul>
+<section class="slide level1">
+  <h2 id="techinternet">tech/internet</h2>
+  <ul>
+    <li>&quot;Haz <em style="color: #ff99ff;">clic </em>aquí  &quot; (#61262) (&quot;Click here&quot;)</li>
+    <li>&quot;se convirtió en un <em style="color: #ff99ff;">trending topic</em> en las redes sociales&quot; (#73673) (it became a trending topic in the social networks)</li>
+    <li>&quot;hace compras <em style="color: #ff99ff;">online</em>&quot; (#59254) (&quot;do shopping online&quot;)</li>
+  </ul>
+  <aside>
+    The second category are things that have to do with technology, computers, or the Internet.
+    Again, it's one that you've probably expected from the beginning.
+    After all, most of this technology stuff has happened in English the first time around, so often only the English term exists and gets adopted (borrowed) in other languages as well.
+    Some of them get translated after a while, others don't, but mostly even if translations exist, the English word is still recognized and used.
+  </aside>
 </section>
-<section class="slide level1">
 
-<h2 id="foodcooking">food/cooking</h2>
-<h3 id="english-names-in-parents">english names in parents</h3>
-<ul>
-  <li>&quot;panceta ( <em style="color: #ff99ff;">bacon</em> )&quot; (#72354)</li>
-  <li>&quot;la anchoa y la caballa ( <em style="color: #ff99ff;">mackerel</em> )&quot; (#75194)</li>
-  <li>&quot;col rizada (<em style="color: #ff99ff;">kale</em>, en ingles)&quot; (#65784)</li>
-  <li>&quot;curcuma fresca (<em style="color: #ff99ff;">turmeric</em>)&quot; (#78170)</li>
-</ul>
+<section class="slide level1">
+  <h2 id="foodcooking">food/cooking</h2>
+  <h3 id="english-names-in-parents">english names in parents</h3>
+  <ul>
+    <li>&quot;panceta ( <em style="color: #ff99ff;">bacon</em> )&quot; (#72354)</li>
+    <li>&quot;la anchoa y la caballa ( <em style="color: #ff99ff;">mackerel</em> )&quot; (#75194)</li>
+    <li>&quot;col rizada (<em style="color: #ff99ff;">kale</em>, en ingles)&quot; (#65784)</li>
+    <li>&quot;curcuma fresca (<em style="color: #ff99ff;">turmeric</em>)&quot; (#78170)</li>
+  </ul>
+  <aside>
+    The third category is something I hadn't really thought of at the beginning, but you'd found it quite logical once you'd reflected on it for a second.
+    It's about food.
+    There are bunch of cases where you've got the name of a specific food in Spanish, followed by the English translation in parenthesis.
+    Mostly, these are articles containing cooking recipies or diet advice.
+    And it makes total sense: after all, people living in predominantly English context should be able to seek out and buy the foods in questions in supermarkets where goods are most probably labeled in English only.
+    Moreover, sometimes we've got some quite specific foods people may not even know the names of in Spanish, even if Spanish is their dominant language.
+  </aside>
 </section>
-<section class="slide level1">
 
-<h3 id="life-style">life style</h3>
-<ul>
-  <li>&quot;prefieres alimentos <em style="color: #ff99ff;">gluten-free</em>,&quot; (#65784) (&quot;prefer gluten-free foods&quot;)</li>
-  <li>&quot;4 tazas de espinacas tiernas (<em style="color: #ff99ff;">baby</em>) limpias&quot; (#54045) (&quot;4 cups of clean baby spinach&quot;)</li>
-  <li>&quot; pavo <em style="color: #ff99ff;">wild</em> con salvia y ajo &quot; (#64931) (&quot;wild turkey with sage and garlic&quot;)</li>
-</ul>
+<section class="slide level1">
+  <h3 id="life-style">life style</h3>
+  <ul>
+    <li>&quot;prefieres alimentos <em style="color: #ff99ff;">gluten-free</em>,&quot; (#65784) (&quot;prefer gluten-free foods&quot;)</li>
+    <li>&quot;4 tazas de espinacas tiernas (<em style="color: #ff99ff;">baby</em>) limpias&quot; (#54045) (&quot;4 cups of clean baby spinach&quot;)</li>
+    <li>&quot; pavo <em style="color: #ff99ff;">wild</em> con salvia y ajo &quot; (#64931) (&quot;wild turkey with sage and garlic&quot;)</li>
+  </ul>
+  <aside>
+    And then, we have this other stuff related to food appearing in English which I labeled "life style".
+    It's all about projecting some healthy, orcanic, hip, successful way of being.
+    And it's happening in English.
+  </aside>
 </section>
-<section class="slide level1">
 
-<h2 id="and-more-life-style">and more life style</h2>
-<ul>
-  <li>&quot;alimentos <em style="color: #ff99ff;">trendy</em>&quot; (#78170) (&quot;trendy foods&quot;)</li>
-  <li>&quot;cambia radicalmente de <em style="color: #ff99ff;">look</em>&quot; (#64405) (&quot;change your look radically&quot;)</li>
-  <li>&quot;los productos <em style="color: #ff99ff;">vintage</em> originales&quot; (#78849) (&quot;the original vintage products&quot;)</li>
-</ul>
+<section class="slide level1">
+  <h2 id="and-more-life-style">and more life style</h2>
+  <ul>
+    <li>&quot;alimentos <em style="color: #ff99ff;">trendy</em>&quot; (#78170) (&quot;trendy foods&quot;)</li>
+    <li>&quot;cambia radicalmente de <em style="color: #ff99ff;">look</em>&quot; (#64405) (&quot;change your look radically&quot;)</li>
+    <li>&quot;los productos <em style="color: #ff99ff;">vintage</em> originales&quot; (#78849) (&quot;the original vintage products&quot;)</li>
+  </ul>
+  <aside>
+    There is actually more I labeled "life style", not necessarily food related stuff.
+    We've also got "trendy", and "look", and "vintage" more than a couple of times.
+    My guess is that by using these terms in English a particular air of hipness, maybe sometimes of upward mobility is projected.
+  </aside>
 </section>
-<section class="slide level1">
 
+<section class="slide level1">
 <h2 id="english-idiomscollocations">English idioms/collocations</h2>
 <ul>
   <li>&quot;casarse y vivir su <em style="color: #ff99ff;">happily ever after</em>&quot; (#78457) (&quot;get married and live their happily ever after&quot;)</li>
@@ -195,27 +407,66 @@ as , tanto públicas como privadas y charter . El sitio es muy fácil de usar , 
   <li>&quot;son verdaderas <em style="color: #ff99ff;">decision makers</em>&quot; (#45099) (&quot;are the real decision makers&quot;)</li>
   <li>&quot;echale un vistazo al <em style="color: #ff99ff;">behind the scenes</em>&quot; (#64443) (&quot;take a look behind the scenes&quot;)</li>
 </ul>
+  <aside>
+    The final category I'm showing you before trying to wrap things up may be somewhat puzzling.
+    It consists of (half-translated) English idioms/collocations.
+    (For those of you who are not quite sure, an idiom is something like "it's raining cats and dogs" and a collocation is a fix phrase, stuff that often goes together, such as "machine learning" or "decision makers".)
+    Here you can certainly argue that some of them may not have an exact translation in Spanish and that the English phrase is much more accurate in the particular case.
+    But that's not always the case.
+    And it doesn't explain why the phrases are sometimes half in Spanish and half in English.
+    If it was spoken language, you could argument with spur of the moment: you couldn't think of the exact phrase in Spanish right then, the other person understood English anyway, so you just used what was on your mind.
+    Well, this explaination certainly doesn't hold when we're dealing with written language, stuff published in a magazine, where more than one person has looked at it and consciously decided to use the particular wording.
+    And there's indeed another explaination theory, that the publishers of the magazine try to establish proximity, intimacy with their readers.
+    By purposefully using a combination of English and Spanish in their texts, much in the same fashion a bilingual person would do, more or less consciously, in their oral discourse, the publishers and authors are signalling "we're part of the same club".
+  </aside>
 </section>
+
 <section id="excursion-into-socio-linguistics" class="slide level1">
-<h1>Excursion into (socio-)linguistics</h1>
-<ul>
-<li class="fragment">code switching / borrowing --&gt; language shift</li>
-<li class="fragment">words do not exist in the first language</li>
-<li class="fragment">words sound similar</li>
-<li class="fragment">words are shorter</li>
-<li class="fragment">one of the languages is perceived as more prestigious: conscious choice</li>
-<li class="fragment">neutral substitute</li>
-</ul>
+  <h1>Excursion into (socio-)linguistics</h1>
+  <ul>
+  <li class="fragment">code switching / borrowing --&gt; language shift</li>
+  <li class="fragment">words do not exist in the first language</li>
+  <li class="fragment">words sound similar</li>
+  <li class="fragment">words are shorter</li>
+  <li class="fragment">one of the languages is perceived as more prestigious: conscious choice</li>
+  <li class="fragment">neutral substitute</li>
+  </ul>
+  <aside>
+    Finally, in the last but one content slide, I'm giving you just a short outlook into sociolinguistics, or the bigger picture this project is a part of.
+    Some of the many phenomenons sociolinguistics investigates are language contact and language shift.
+    Language shift, that is a community speaking particular language in a language contact situation gradually starting to speak another language, and sometimes, abandoning the first language altogether.
+    Borrowings and code switchings are syptoms of language shift.
+    These are basically what we've just observed in the magazine articles corpus: usages of words/snipets/sentences of one language incorporated into another.
+    The difference between them is more of a quantitative nature: if a single speaker uses particular word or phrase, we are talking about code switching.
+    If a whole community incorporates particular utterances in their language, we have a borrowing.
+    There are a multitude of underlying reasons speakers borrow or code switch.
+    First of all, the exact word/phrase may not exist in their first language and hence they're aiming for a more precise expression by code switching.
+    Some switches occur because words in both languages sound similar, or because words in the second language are shorter.
+    While a lot of switches may be automatic or involuntary, think of a bilingual person's oral discourse, others might constitute conscious choice.
+    This is especially the case if one language is perceived as more prestigious than the other and a person wants to project success, intelligence, upward mobility, etc.
+    Another reason for switcing deliberately may be stressing the belonging to a specific group or community in order to establish familiarity.
+    And, in the particular case of Spanish in the US, switching to English may provide a neutral substitute for vocabulary varying across the different Spanish varieties and thus causing rivalries or misunderstandings.
+  <aside>
 </section>
+
 <section id="takeaways" class="slide level1">
-<h1>Takeaways</h1>
-<ul>
-<li class="fragment">linguistics is awesome</li>
-<li class="fragment">coding skills go a long way</li>
-<li class="fragment">non-trivial problems</li>
-<li class="fragment">&quot;lifestyle&quot;/&quot;women&quot;-magazines are evil</li>
-</ul>
+  <h1>Takeaways</h1>
+  <ul>
+  <li class="fragment">linguistics is awesome</li>
+  <li class="fragment">coding skills go a long way</li>
+  <li class="fragment">non-trivial problems</li>
+  <li class="fragment">&quot;lifestyle&quot;/&quot;women&quot;-magazines are evil</li>
+  </ul>
+  <aside>
+    So, to wrap up, these are some of the stuff you may have taken away from the talk.
+    As you've probably noticed, I'm absolutely convinced that linguistics is really exciting.
+    I hope that I've got you at least a little bit thrilled about the subject and if you want to dig further, definitely check out <em>nltk</em> and have a look at the (sociolinguistics) papers I've linked on the next slide.
+    Second, little coding skills are really helpful for a large variety of problems.
+    Then again, even seemingly simple problems turn out to be not that trivial pretty fast and often some serious algorithmic contemplation is needed (and not always sufficient) in order to find a satisfactory solution.
+    And finally, after seeing the examples, you may have picked up that lifestyle, "women" magazines are a capitalist, women degrading phenomenon.
+  </aside>
 </section>
+
 <section id="sources" class="slide level1">
 <h1>Sources</h1>
 <ul>
@@ -226,6 +477,7 @@ as , tanto públicas como privadas y charter . El sitio es muy fácil de usar , 
 <li class="fragment">Zentella, Ana C.: Lexical Leveling in Four New York City Spanish Dialects: Linguistic and Social Factors. In: Hispania 73 (1990), Nr. 4</li>
 </ul>
 </section>
+
 <section id="thank-you" class="slide level1">
 <h1>Thank you!</h1>
 <p>This presentation is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA license</a>.</p>
