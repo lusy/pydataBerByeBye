@@ -15,7 +15,7 @@
 
 # Motivation
 
-![](siempre_mujer_screenshot_201708.png)
+![Screenshot from Aug 13th 2017](siempre_mujer_screenshot_201708.png)
 
 ---
 
